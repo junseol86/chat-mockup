@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Chat Area -->
+    <main class="chat-viewport" id="chatViewport">
+      <div class="chat-content" id="chatContent">
+        <!-- Messages will be injected here -->
+        <div class="message-spacer"></div>
+      </div>
+    </main>
+
+    <!-- Control Panel -->
+    <footer class="control-panel">
+      <div class="input-group left">
+        <textarea id="inputLeft" placeholder="Message from Other..." rows="1"></textarea>
+      </div>
+
+      <div class="input-group right">
+        <textarea id="inputRight" placeholder="Message from Me..." rows="1"></textarea>
+      </div>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
