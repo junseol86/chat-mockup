@@ -41,16 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
   handleInput(inputLeft, 'other');
   handleInput(inputRight, 'me');
 
-  // Toggle Control Panel with Cmd (Mac) or Ctrl (Win/Linux) only
+  // Toggle Control Panel with Cmd+Shift / Ctrl+Shift
   const controlPanel = document.querySelector('.control-panel');
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Meta' || e.key === 'Control') {
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
       e.preventDefault();
       controlPanel.classList.toggle('hidden');
       if (!controlPanel.classList.contains('hidden')) {
         inputLeft.focus();
       }
     }
+  });
+
+  // Default messages (left)
+  const spacer = chatContent.querySelector('.message-spacer');
+  ['프로그램이 시작되었습니다.', '모의투자용 토큰 발급 완료.'].forEach((text) => {
+    const messageEl = document.createElement('div');
+    messageEl.classList.add('message', 'other');
+    messageEl.textContent = text;
+    chatContent.insertBefore(messageEl, spacer);
   });
 
   inputLeft.focus();
