@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
   handleInput(inputLeft, 'other');
   handleInput(inputRight, 'me');
 
-  // Toggle Control Panel with Cmd+Shift / Ctrl+Shift
+  // Toggle Control Panel with Shift+Tab
   const controlPanel = document.querySelector('.control-panel');
   document.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
+    if (e.key === 'Tab' && e.shiftKey) {
       e.preventDefault();
       controlPanel.classList.toggle('hidden');
       if (!controlPanel.classList.contains('hidden')) {
