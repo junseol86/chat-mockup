@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const inputLeft = document.getElementById('inputLeft');
   const inputRight = document.getElementById('inputRight');
 
-  // Function to add a message
   function addMessage(text, type) {
     if (!text.trim()) return;
 
@@ -24,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Handle Input Events
   function handleInput(input, type) {
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault(); // Prevent newline
+      if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
+        e.preventDefault();
         addMessage(input.value, type);
         input.value = '';
-        input.style.height = 'auto'; // Reset height
+        input.style.height = 'auto';
       }
     });
 
@@ -42,15 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
   handleInput(inputLeft, 'other');
   handleInput(inputRight, 'me');
 
-  // Toggle Control Panel with Tab
+  // Toggle Control Panel with Cmd (Mac) or Ctrl (Win/Linux) only
+  const controlPanel = document.querySelector('.control-panel');
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault(); // Prevent focus change
-      const controlPanel = document.querySelector('.control-panel');
+    if (e.key === 'Meta' || e.key === 'Control') {
+      e.preventDefault();
       controlPanel.classList.toggle('hidden');
+      if (!controlPanel.classList.contains('hidden')) {
+        inputLeft.focus();
+      }
     }
   });
 
-  // Initial focus (optional)
   inputLeft.focus();
 });
