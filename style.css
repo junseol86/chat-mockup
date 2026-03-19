@@ -61,7 +61,7 @@ body {
 .chat-content {
   display: flex;
   flex-direction: column;
-  gap: 18px; /* 12 * 1.5 */
+  gap: 6px; /* 기존 대비 1/3 */
   justify-content: flex-end;
   min-height: min-content;
   padding-bottom: 300px; /* 200 * 1.5 */
