@@ -1,3 +1,51 @@
+const THEME_STORAGE_KEY = 'chat-mockup-theme';
+
+function applyTheme(theme) {
+  const root = document.documentElement;
+  if (theme === 'light') {
+    root.dataset.theme = 'light';
+  } else {
+    delete root.dataset.theme;
+  }
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    /* ignore */
+  }
+}
+
+function loadStoredTheme() {
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === 'light' || stored === 'dark') {
+      applyTheme(stored);
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
+function toggleTheme() {
+  const isLight = document.documentElement.dataset.theme === 'light';
+  applyTheme(isLight ? 'dark' : 'light');
+}
+
+function themeToggleFromContextMenu(e) {
+  const t = e.target;
+  if (t instanceof HTMLTextAreaElement || t instanceof HTMLInputElement || t instanceof HTMLSelectElement) {
+    return;
+  }
+  if (t instanceof HTMLElement && t.isContentEditable) {
+    return;
+  }
+  e.preventDefault();
+  toggleTheme();
+}
+
+loadStoredTheme();
+
+document.querySelector('.app-container')?.addEventListener('contextmenu', themeToggleFromContextMenu);
+
 document.addEventListener('DOMContentLoaded', () => {
   const chatViewport = document.getElementById('chatViewport');
   const chatContent = document.getElementById('chatContent');
