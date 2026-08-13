@@ -101,14 +101,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Default messages (left)
-  const spacer = chatContent.querySelector('.message-spacer');
-  ['프로그램이 시작되었습니다.', '모의투자용 토큰 발급 완료.'].forEach((text) => {
-    const messageEl = document.createElement('div');
-    messageEl.classList.add('message', 'other');
-    messageEl.textContent = text;
-    chatContent.insertBefore(messageEl, spacer);
-  });
-
   inputLeft.focus();
 });
